@@ -103,4 +103,4 @@ if __name__ == "__main__":
     else:
         keyword = args.keyword
         keyword_version = args.keyword_version
-        main(args)
+        main(args, keyword , keyword_version)
