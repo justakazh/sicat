@@ -47,9 +47,9 @@ usage : sicat.py --help
                 print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(content['data'])}{Fore.WHITE} Exploits Found!")
                 self.data.append({"exploitdb" : predata})
             else:
-                print(f"|{Fore.RED}- No result in ExploitDB!")
+                print(f"|{Fore.RED}- No result in ExploitDB!{Fore.WHITE}")
         except:
-            print(f"|{Fore.RED}- Internal Error - No result in ExploitDB!")
+            print(f"|{Fore.RED}- Internal Error - No result in ExploitDB!{Fore.WHITE}")
 
     def exploitalert(self, content):
         try:
@@ -74,9 +74,9 @@ usage : sicat.py --help
                 print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(content)}{Fore.WHITE} Exploits Found!")
                 self.data.append({"exploitalert" : predata})
             else:
-                print(f"|{Fore.RED}- No result in ExploitAlert!")
+                print(f"|{Fore.RED}- No result in ExploitAlert!{Fore.WHITE}")
         except:
-            print(f"|{Fore.RED}- Internal Error - No result in ExploitAlert!")
+            print(f"|{Fore.RED}- Internal Error - No result in ExploitAlert!{Fore.WHITE}")
 
     def packetstormsecurity(self, content):
         try:
@@ -100,9 +100,9 @@ usage : sicat.py --help
                 print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(reg)}{Fore.WHITE} Exploits Found!")
                 self.data.append({"packetstormsecurity" : predata})
             else:
-                print(f"|{Fore.RED}- No result in PacketStorm!")
+                print(f"|{Fore.RED}- No result in PacketStorm!{Fore.WHITE}")
         except:
-            print(f"|{Fore.RED}- Internal Error - No result in PacketStorm!")
+            print(f"|{Fore.RED}- Internal Error - No result in PacketStorm!{Fore.WHITE}")
 
 
 
@@ -130,9 +130,9 @@ usage : sicat.py --help
                 print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(content)}{Fore.WHITE} Modules Found!")
                 self.data.append({"msfmodule" : predata})
             else:
-                print(f"|{Fore.RED}- No result in Metasploit Module!")
+                print(f"|{Fore.RED}- No result in Metasploit Module!{Fore.WHITE}")
         except:
-            print(f"|{Fore.RED}- Internal Error - No result in Metasploit Module!")
+            print(f"|{Fore.RED}- Internal Error - No result in Metasploit Module!{Fore.WHITE} ")
 
 
     def nvddb(self, content):
@@ -159,9 +159,9 @@ usage : sicat.py --help
                 self.data.append({"nvddb" : predata})
             else:
                 print("|")
-                print(f"|{Fore.RED}- No result in National Vulnearbility Database!")
+                print(f"|{Fore.RED}- No result in National Vulnearbility Database!{Fore.WHITE}")
         except:
-            print(f"|{Fore.RED}- Internal Error - No result in National Vulnearbility Database!")
+            print(f"|{Fore.RED}- Internal Error - No result in National Vulnearbility Database!{Fore.WHITE}")
             
 
     def outJson(self, location = ""):
