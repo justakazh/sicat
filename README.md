@@ -118,11 +118,14 @@ python sicat -k telerik --exploitdb --msfmodule
 
 ```
 
-nmap -sV localhost -oX nmap_out | python sicat -nm --packetstorm
+nmap -sV localhost -oX nmap_out.xml
+python sicat -nm nnmap_out.xml --packetstorm
 
 ```
 
-  
+## To-do
+- [ ] Input from pipeline
+- [ ] Search NSE Script
 
 ## Contribution
 

@@ -21,6 +21,7 @@ usage : sicat.py --help
         print(ascii_art)
 
     def start(self,keyword = "", version = ""):
+        print("|")
         print(f"|{Fore.YELLOW}> Starting with Keyword : {keyword} {version} {Fore.WHITE}")
         print("|----------------------------------------")
 
