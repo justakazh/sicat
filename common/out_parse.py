@@ -156,7 +156,7 @@ usage : sicat.py --help
                         "description" : data['cve']['descriptions'][0]['value'],
                         "link" : f"https://nvd.nist.gov/vuln/detail/{data['cve']['id']}"
                     })
-                print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(content)}{Fore.WHITE} CVEs Found!")
+                print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(content['vulnerabilities'])}{Fore.WHITE} CVEs Found!")
                 self.data.append({"nvddb" : predata})
             else:
                 print("|")
