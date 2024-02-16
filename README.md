@@ -118,7 +118,7 @@ python sicat.py -k telerik --exploitdb --msfmodule
 
 ```
 
-nmap -sV localhost -oX nmap_out.xml
+nmap --open -sV localhost -oX nmap_out.xml
 python sicat.py -nm nmap_out.xml --packetstorm
 
 ```
