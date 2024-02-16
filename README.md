@@ -108,7 +108,7 @@ output file type json and html
 
 ```
 
-python sicat -k telerik --exploitdb --msfmodule
+python sicat.py -k telerik --exploitdb --msfmodule
 
 ```
 
@@ -119,7 +119,7 @@ python sicat -k telerik --exploitdb --msfmodule
 ```
 
 nmap -sV localhost -oX nmap_out.xml
-python sicat -nm nnmap_out.xml --packetstorm
+python sicat.py -nm nmap_out.xml --packetstorm
 
 ```
 
