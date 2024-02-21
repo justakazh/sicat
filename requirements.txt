@@ -2,3 +2,4 @@ requests==2.25.1
 colorama==0.4.6
 xmltodict==0.13.0
 tqdm==4.50.2
+beautifulsoup4==4.12.3
