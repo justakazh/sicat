@@ -6,7 +6,7 @@ from tqdm import tqdm
 class ScriptInfoFetcher:
     def __init__(self, scripts_url="https://svn.nmap.org/nmap/scripts/", 
                  info_url="https://nmap.org/nsedoc/scripts/", 
-                 db_file='files/nse_script.db'):
+                 db_file='files/exploit.db'):
         self.scripts_url = scripts_url
         self.info_url = info_url
         self.db = NSEScriptDB(db_file)
@@ -48,6 +48,8 @@ class ScriptInfoFetcher:
 
                 else:
                     print("Failed to fetch description and category for", script_name, ". Status code:", response.status_code)
+
+            self.db.close()
 
         else:
             print("Failed to fetch script names. Status code:", response.status_code)
