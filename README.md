@@ -86,6 +86,8 @@ Identify via nmap output
 
 --exploitdb Use ExploitDB as a source of information
 
+--exploitobserver Use ExploitObserver as a source of information
+
 --exploitalert Use ExploitAlert as a source of information
 
 --msfmodule Use metasploit module as a source of information
@@ -109,6 +111,7 @@ output file type json and html
 ```
 
 python sicat.py -k telerik --exploitdb --msfmodule
+python sicat.py -k CVE-2021-3450 --exploitobserver --output .
 
 ```
 
