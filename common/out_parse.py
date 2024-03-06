@@ -219,7 +219,6 @@ usage : sicat.py --help
                 html += """</tbody></table></div>"""
 
             if "exploitobserver" in report:
-                # print(report)
                 html += """<div class="row"><h2>Exploit Observer</h2>"""
                 html += f"<p>{report['exploitobserver'][0]['description']}</p>"
                 html += """<table id="exploitobserver" class="display"><thead><tr><th>#</th><th>Title</th><th>Type</th><th>Link</th></tr></thead><tbody>"""
