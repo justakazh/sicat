@@ -17,10 +17,12 @@ SiCat's main strength lies in its ability to traverse both online and local reso
 ### SiCat Resources
 
  - [Exploit-DB](https://www.exploit-db.com/)
+ - [Exploit Observer](https://exploit.observer)
  - [Packetstorm Security](https://packetstormsecurity.com/)
  - [Exploit Alert](https://www.exploitalert.com/)
  - [NVD Database](https://nvd.nist.gov/)
  - [Metasploit Modules](https://github.com/rapid7/metasploit-framework/tree/master/modules)
+
 
 ## Installation
 
