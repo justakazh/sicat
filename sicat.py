@@ -1,4 +1,5 @@
 from lib.vuln_exploitdb import ExploitDB
+from lib.vuln_exploitobserver import ExploitObserver
 from lib.vuln_exploitalert import ExploitAlert
 from lib.vuln_packetstormsecurity import PacketStormSecurity
 from lib.module_msf import MsfModule
@@ -29,6 +30,10 @@ def main(args, keyword="", keyword_version=""):
         else:
             getnvd = ExploitAlert.find(keyword)
         Output.exploitalert(getnvd)
+
+    if args.exploitobserver:
+        getnvd = ExploitObserver.find(keyword)
+        Output.exploitobserver(getnvd)
 
     if args.packetstorm:
         if keyword_version != None:
@@ -66,6 +71,7 @@ if __name__ == "__main__":
     #Initialize
     ExploitDB = ExploitDB()
     ExploitAlert = ExploitAlert()
+    ExploitObserver = ExploitObserver()
     PacketStormSecurity = PacketStormSecurity()
     MsfModule = MsfModule()
     NvdDB = NvdDB()
@@ -87,6 +93,7 @@ if __name__ == "__main__":
     parser.add_argument('--packetstorm', action='store_true', help='Use PacketStorm as a source of information')
     parser.add_argument('--exploitdb', action='store_true', help='Use ExploitDB as a source of information')
     parser.add_argument('--exploitalert', action='store_true', help='Use ExploitAlert as a source of information')
+    parser.add_argument('--exploitobserver', action='store_true', help='Use ExploitObserver as a source of information')
     parser.add_argument('--msfmodule', action='store_true', help='Use metasploit module as a source of information')
     parser.add_argument('-o','--output', type=str, help='path to save the output')
     parser.add_argument('-ot','--output_type', type=str, help='output file type json and html')

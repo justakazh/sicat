@@ -52,6 +52,40 @@ usage : sicat.py --help
         except:
             print(f"|{Fore.RED}- Internal Error - No result in ExploitDB!{Fore.WHITE}")
 
+    def exploitobserver(self, content):
+            try:
+                if len(content) != 0:
+                    print("|")
+                    print(f"|{Fore.GREEN}+ Exploit Observer Result {Fore.WHITE}")
+                    print("|--------------------")
+
+                    predata = []
+                    count = 0
+                    predata.append({"description" : content['description']})
+                    print(f"|{Fore.BLUE}- Description {Fore.WHITE}: {content['description']}")
+                    print("|")
+                    print("|")
+                    for data in content['entries']:
+                        print(f"|{Fore.BLUE}- Type  : {data}")
+                        for i in content['entries'][data]:
+                            print(f"{Fore.WHITE}|{Fore.BLUE}-{Fore.WHITE} Link  : {i}")
+
+                            predata.append({
+                                "title" : i,
+                                "type" : data,
+                                "link" : i
+                            })
+                            count = count + 1
+
+                        print("|")
+                        print("|")
+                    print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{count}{Fore.WHITE} Exploits Found!")
+                    self.data.append({"exploitobserver" : predata})
+                else:
+                    print(f"|{Fore.RED}- No result in ExploitObserver!{Fore.WHITE}")
+            except:
+                print(f"|{Fore.RED}- Internal Error - No result in ExploitObserver!{Fore.WHITE}")
+
     def exploitalert(self, content):
         try:
             if len(content) != 0:
@@ -183,6 +217,18 @@ usage : sicat.py --help
                     html += f"<tr><td>{num}</td><td>{exploitdb['title']}</td><td>{exploitdb['type']}</td><td><a target='_blank' href='{exploitdb['link']}'class='visit'>visit</a></td></tr>"
                     num += 1
                 html += """</tbody></table></div>"""
+
+            if "exploitobserver" in report:
+                # print(report)
+                html += """<div class="row"><h2>Exploit Observer</h2>"""
+                html += f"<p>{report['exploitobserver'][0]['description']}</p>"
+                html += """<table id="exploitobserver" class="display"><thead><tr><th>#</th><th>Title</th><th>Type</th><th>Link</th></tr></thead><tbody>"""
+                num = 1
+                report['exploitobserver'] = report['exploitobserver'][1:]
+                for exploitobserver in report['exploitobserver']:
+                    html += f"<tr><td>{num}</td><td>{exploitobserver['title']}</td><td>{exploitobserver['type']}</td><td><a target='_blank' href='{exploitobserver['link']}'class='visit'>visit</a></td></tr>"
+                    num += 1
+                html += """</tbody></table></div>"""
             
             if "exploitalert" in report:
                 html += """<div class="row"> <h2>ExploitAlert</h2> <table id="exploitalert" class="display"> <thead> <tr> <th>#</th> <th>Title</th> <th>Link</th> </tr> </thead> <tbody>"""
@@ -207,7 +253,7 @@ usage : sicat.py --help
                 html += """</tbody></table></div>"""
             
             if "msfmodule" in report:
-                html += """<div class="row"> <h2>Metasploit Module</h2> <table id="msfmodule" class="display"> <thead> <tr> <th>#</th> <th>Titke</th> <th>Module</th> <th>Link</th> </tr> </thead> <tbody>"""
+                html += """<div class="row"> <h2>Metasploit Module</h2> <table id="msfmodule" class="display"> <thead> <tr> <th>#</th> <th>Title</th> <th>Module</th> <th>Link</th> </tr> </thead> <tbody>"""
                 num = 1
                 for msf in report['msfmodule']:
                     html += f"<tr> <td>{num}</td> <td>{msf['title']}</td> <td>{msf['module']}</td> <td> <a target='_blank' href='{msf['link']}' class='visit'>Visit</a> </td> </tr>"

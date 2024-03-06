@@ -1,0 +1,269 @@
+[
+    {
+        "exploitobserver": [
+            {
+                "description": "Exploit Observer has 52 entries in 8 file formats related to CVE-2021-3450. The X509_V_FLAG_X509_STRICT flag enables additional security checks of the certificates present in a certificate chain. It is not set by default. Starting from OpenSSL version 1.1.1h a check to disallow certificates in the chain that have explicitly encoded elliptic curve parameters was added as an additional strict check. An error in the implementation of this check meant that the result of a previous check to confirm that certificates in the chain are valid CA certificates was overwritten. This effectively bypasses the check that non-CA certificates must not be able to issue other certificates. If a \"purpose\" has been configured then there is a subsequent opportunity for checks that the certificate is a valid CA. All of the named \"purpose\" values implemented in libcrypto perform this check. Therefore, where a purpose is set the certificate chain will still be rejected even when the strict flag has been used. A purpose is set by default in libssl client and server certificate verification routines, but it can be overridden or removed by an application. In order to be affected, an application must explicitly set the X509_V_FLAG_X509_STRICT verification flag and either not set a purpose for the certificate verification or, in the case of TLS client or server applications, override the default purpose. OpenSSL versions 1.1.1h and newer are affected by this issue. Users of these versions should upgrade to OpenSSL 1.1.1k. OpenSSL 1.0.2 is not impacted by this issue. Fixed in OpenSSL 1.1.1k (Affected 1.1.1h-1.1.1j)."
+            },
+            {
+                "title": "https://github.com/jntass/tassl-1.1.1k",
+                "type": "c",
+                "link": "https://github.com/jntass/tassl-1.1.1k"
+            },
+            {
+                "title": "https://github.com/scriptzteam/glftpd-v2.11ab-stable",
+                "type": "c",
+                "link": "https://github.com/scriptzteam/glftpd-v2.11ab-stable"
+            },
+            {
+                "title": "https://github.com/fredrkl/trivy-demo",
+                "type": "dockerfile",
+                "link": "https://github.com/fredrkl/trivy-demo"
+            },
+            {
+                "title": "https://github.com/isgo-golgo13/gokit-gorillakit-enginesvc",
+                "type": "go",
+                "link": "https://github.com/isgo-golgo13/gokit-gorillakit-enginesvc"
+            },
+            {
+                "title": "https://github.com/vinamra28/tekton-image-scan-trivy",
+                "type": "go",
+                "link": "https://github.com/vinamra28/tekton-image-scan-trivy"
+            },
+            {
+                "title": "https://bdu.fstec.ru/vul/2021-01845",
+                "type": "html",
+                "link": "https://bdu.fstec.ru/vul/2021-01845"
+            },
+            {
+                "title": "https://data.gsd.id/GSD-2021-3449",
+                "type": "html",
+                "link": "https://data.gsd.id/GSD-2021-3449"
+            },
+            {
+                "title": "https://data.gsd.id/GSD-2021-3450",
+                "type": "html",
+                "link": "https://data.gsd.id/GSD-2021-3450"
+            },
+            {
+                "title": "https://github.com/advisories/GHSA-8hfj-xrj2-pm22",
+                "type": "html",
+                "link": "https://github.com/advisories/GHSA-8hfj-xrj2-pm22"
+            },
+            {
+                "title": "https://medium.com/@a-r-p-syndicate/23eaea466e4a",
+                "type": "html",
+                "link": "https://medium.com/@a-r-p-syndicate/23eaea466e4a"
+            },
+            {
+                "title": "https://nvd.nist.gov/vuln/detail/CVE-2021-3450",
+                "type": "html",
+                "link": "https://nvd.nist.gov/vuln/detail/CVE-2021-3450"
+            },
+            {
+                "title": "https://www.cnnvd.org.cn/home/globalSearch?keyword=CNNVD-202103-1456",
+                "type": "html",
+                "link": "https://www.cnnvd.org.cn/home/globalSearch?keyword=CNNVD-202103-1456"
+            },
+            {
+                "title": "https://www.cnvd.org.cn/flaw/show/CNVD-2021-39525",
+                "type": "html",
+                "link": "https://www.cnvd.org.cn/flaw/show/CNVD-2021-39525"
+            },
+            {
+                "title": "https://github.com/chnzzh/openssl-cve-lib",
+                "type": "markdown",
+                "link": "https://github.com/chnzzh/openssl-cve-lib"
+            },
+            {
+                "title": "https://github.com/dntyo/f5_vulnerability",
+                "type": "markdown",
+                "link": "https://github.com/dntyo/f5_vulnerability"
+            },
+            {
+                "title": "https://github.com/thecyberbaby/trivy-by-aquasecurity",
+                "type": "markdown",
+                "link": "https://github.com/thecyberbaby/trivy-by-aquasecurity"
+            },
+            {
+                "title": "https://github.com/tianocore-docs/thirdpartysecurityadvisories",
+                "type": "markdown",
+                "link": "https://github.com/tianocore-docs/thirdpartysecurityadvisories"
+            },
+            {
+                "title": "https://github.com/arpsyndicate/puncia",
+                "type": "python",
+                "link": "https://github.com/arpsyndicate/puncia"
+            },
+            {
+                "title": "https://github.com/rnbochsr/yr_of_the_jellyfish",
+                "type": "python",
+                "link": "https://github.com/rnbochsr/yr_of_the_jellyfish"
+            },
+            {
+                "title": "https://github.com/bollwarm/sectoolset",
+                "type": "shell",
+                "link": "https://github.com/bollwarm/sectoolset"
+            },
+            {
+                "title": "https://github.com/teresaweber685/book_list",
+                "type": "shell",
+                "link": "https://github.com/teresaweber685/book_list"
+            },
+            {
+                "title": "https://cert-portal.siemens.com/productcert/pdf/ssa-389290.pdf",
+                "type": "unknown",
+                "link": "https://cert-portal.siemens.com/productcert/pdf/ssa-389290.pdf"
+            },
+            {
+                "title": "https://git.openssl.org/gitweb/?p=openssl.git%3Ba=commitdiff%3Bh=2a40b7bc7b94dd7de897a74571e7024f0cf0d63b",
+                "type": "unknown",
+                "link": "https://git.openssl.org/gitweb/?p=openssl.git%3Ba=commitdiff%3Bh=2a40b7bc7b94dd7de897a74571e7024f0cf0d63b"
+            },
+            {
+                "title": "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=2a40b7bc7b94dd7de897a74571e7024f0cf0d63b",
+                "type": "unknown",
+                "link": "https://git.openssl.org/gitweb/?p=openssl.git;a=commitdiff;h=2a40b7bc7b94dd7de897a74571e7024f0cf0d63b"
+            },
+            {
+                "title": "https://kb.pulsesecure.net/articles/Pulse_Security_Advisories/SA44845",
+                "type": "unknown",
+                "link": "https://kb.pulsesecure.net/articles/Pulse_Security_Advisories/SA44845"
+            },
+            {
+                "title": "https://kc.mcafee.com/corporate/index?page=content&id=SB10356",
+                "type": "unknown",
+                "link": "https://kc.mcafee.com/corporate/index?page=content&id=SB10356"
+            },
+            {
+                "title": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/CCBFLLVQVILIVGZMBJL3IXZGKWQISYNP",
+                "type": "unknown",
+                "link": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/CCBFLLVQVILIVGZMBJL3IXZGKWQISYNP"
+            },
+            {
+                "title": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CCBFLLVQVILIVGZMBJL3IXZGKWQISYNP",
+                "type": "unknown",
+                "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CCBFLLVQVILIVGZMBJL3IXZGKWQISYNP"
+            },
+            {
+                "title": "https://mta.openssl.org/pipermail/openssl-announce/2021-March/000198.html",
+                "type": "unknown",
+                "link": "https://mta.openssl.org/pipermail/openssl-announce/2021-March/000198.html"
+            },
+            {
+                "title": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2021-0013",
+                "type": "unknown",
+                "link": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2021-0013"
+            },
+            {
+                "title": "https://security-tracker.debian.org/tracker/CVE-2021-3450",
+                "type": "unknown",
+                "link": "https://security-tracker.debian.org/tracker/CVE-2021-3450"
+            },
+            {
+                "title": "https://security.FreeBSD.org/advisories/FreeBSD-SA-21:07.openssl.asc",
+                "type": "unknown",
+                "link": "https://security.FreeBSD.org/advisories/FreeBSD-SA-21:07.openssl.asc"
+            },
+            {
+                "title": "https://security.gentoo.org/glsa/202103-03",
+                "type": "unknown",
+                "link": "https://security.gentoo.org/glsa/202103-03"
+            },
+            {
+                "title": "https://security.netapp.com/advisory/ntap-20210326-0006",
+                "type": "unknown",
+                "link": "https://security.netapp.com/advisory/ntap-20210326-0006"
+            },
+            {
+                "title": "https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-openssl-2021-GHY28dJd",
+                "type": "unknown",
+                "link": "https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-openssl-2021-GHY28dJd"
+            },
+            {
+                "title": "https://wiki.astralinux.ru/astra-linux-se16-bulletin-20210611SE16",
+                "type": "unknown",
+                "link": "https://wiki.astralinux.ru/astra-linux-se16-bulletin-20210611SE16"
+            },
+            {
+                "title": "https://wiki.astralinux.ru/astra-linux-se81-bulletin-20211019SE81",
+                "type": "unknown",
+                "link": "https://wiki.astralinux.ru/astra-linux-se81-bulletin-20211019SE81"
+            },
+            {
+                "title": "https://wiki.astralinux.ru/pages/viewpage.action?pageId=47416144",
+                "type": "unknown",
+                "link": "https://wiki.astralinux.ru/pages/viewpage.action?pageId=47416144"
+            },
+            {
+                "title": "https://www.openssl.org/news/secadv/20210325.txt",
+                "type": "unknown",
+                "link": "https://www.openssl.org/news/secadv/20210325.txt"
+            },
+            {
+                "title": "https://www.openwall.com/lists/oss-security/2021/03/27/1",
+                "type": "unknown",
+                "link": "https://www.openwall.com/lists/oss-security/2021/03/27/1"
+            },
+            {
+                "title": "https://www.openwall.com/lists/oss-security/2021/03/27/2",
+                "type": "unknown",
+                "link": "https://www.openwall.com/lists/oss-security/2021/03/27/2"
+            },
+            {
+                "title": "https://www.openwall.com/lists/oss-security/2021/03/28/3",
+                "type": "unknown",
+                "link": "https://www.openwall.com/lists/oss-security/2021/03/28/3"
+            },
+            {
+                "title": "https://www.openwall.com/lists/oss-security/2021/03/28/4",
+                "type": "unknown",
+                "link": "https://www.openwall.com/lists/oss-security/2021/03/28/4"
+            },
+            {
+                "title": "https://www.oracle.com//security-alerts/cpujul2021.html",
+                "type": "unknown",
+                "link": "https://www.oracle.com//security-alerts/cpujul2021.html"
+            },
+            {
+                "title": "https://www.oracle.com/security-alerts/cpuApr2021.html",
+                "type": "unknown",
+                "link": "https://www.oracle.com/security-alerts/cpuApr2021.html"
+            },
+            {
+                "title": "https://www.oracle.com/security-alerts/cpuapr2022.html",
+                "type": "unknown",
+                "link": "https://www.oracle.com/security-alerts/cpuapr2022.html"
+            },
+            {
+                "title": "https://www.oracle.com/security-alerts/cpujul2022.html",
+                "type": "unknown",
+                "link": "https://www.oracle.com/security-alerts/cpujul2022.html"
+            },
+            {
+                "title": "https://www.oracle.com/security-alerts/cpuoct2021.html",
+                "type": "unknown",
+                "link": "https://www.oracle.com/security-alerts/cpuoct2021.html"
+            },
+            {
+                "title": "https://www.tenable.com/security/tns-2021-05",
+                "type": "unknown",
+                "link": "https://www.tenable.com/security/tns-2021-05"
+            },
+            {
+                "title": "https://www.tenable.com/security/tns-2021-08",
+                "type": "unknown",
+                "link": "https://www.tenable.com/security/tns-2021-08"
+            },
+            {
+                "title": "https://www.tenable.com/security/tns-2021-09",
+                "type": "unknown",
+                "link": "https://www.tenable.com/security/tns-2021-09"
+            },
+            {
+                "title": "https://\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430.\u043d\u043f\u043f\u043a\u0442.\u0440\u0444/bin/view/\u041e\u0421\u043d\u043e\u0432\u0430/\u041e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f/2.6",
+                "type": "unknown",
+                "link": "https://\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430.\u043d\u043f\u043f\u043a\u0442.\u0440\u0444/bin/view/\u041e\u0421\u043d\u043e\u0432\u0430/\u041e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f/2.6"
+            }
+        ]
+    }
+]
