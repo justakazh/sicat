@@ -3,6 +3,7 @@ import sqlite3
 class NSEScriptDB:
     def __init__(self, db_file):
         self.conn = sqlite3.connect(db_file)
+        self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
 
     def create_table(self):
@@ -50,11 +51,29 @@ class NSEScriptDB:
                                     (categories[i], script_name))
             else:
                 self.cursor.execute('''UPDATE nse_script
-                                       SET category{} = NULL
+                                       SET category{} = '-'
                                        WHERE script_name = ?'''.format(i + 1),
                                     (script_name,))
 
         self.conn.commit()
+
+    def search_script(self, keyword):
+        try:
+            
+            self.cursor.execute("SELECT * FROM nse_script WHERE script_name LIKE ?", ('%' + keyword + '%',))
+            rows = self.cursor.fetchall()
+
+            if rows:
+                return rows
+            else:
+                return False
+            
+        except sqlite3.Error as e:
+            print("SQLite error:", e)
+        
+        finally:
+            self.conn.commit()
+
 
     def close(self):
         self.conn.close()

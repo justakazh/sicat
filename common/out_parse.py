@@ -165,6 +165,37 @@ usage : sicat.py --help
             print(f"|{Fore.RED}- Internal Error - No result in National Vulnearbility Database!{Fore.WHITE}")
             
 
+    def nsescriptdb(self, content):
+
+        try:
+            if content:
+                print("|")
+                print(f"|{Fore.GREEN}+ NSE Script DB Result {Fore.WHITE}")
+                print("|--------------------")
+
+                predata = []
+                for row in content:
+                    filtered_tuple = tuple(item if item is not None else "" for item in row)
+                    print(f"|{Fore.BLUE}-{Fore.WHITE} Title    : {row['script_name']}")
+                    print(f"|{Fore.BLUE}-{Fore.WHITE} Type     : {row['script_type']}")
+                    print(f"|{Fore.BLUE}-{Fore.WHITE} Category : {row['category1']}, {row['category2']}, {row['category3']}, {row['category4']}, {row['category5']}")
+                    print(f"|{Fore.BLUE}-{Fore.WHITE} Link     : {row['link']}")
+                    print("|")
+                    print("|")
+
+                    predata.append({
+                        "title" : row['script_name'],
+                        "type" : row['script_type'],
+                        "description" : row['description'],
+                        "link" : row['link']
+                    })
+                print(f"|{Fore.BLUE}-{Fore.WHITE} Total Result : {Fore.GREEN}{len(content)}{Fore.WHITE} Exploits Found!")
+                self.data.append({"nsescriptdb" : predata})
+            else:
+                print(f"|{Fore.RED}- No result in NSEScriptDB!{Fore.WHITE}")
+        except:
+            print(f"|{Fore.RED}- Internal Error - No result in NSEScriptDB!{Fore.WHITE}")
+
     def outJson(self, location = ""):
         self.genOutDir(location)
         report = json.dumps(self.data, indent=4)
@@ -207,13 +238,20 @@ usage : sicat.py --help
                 html += """</tbody></table></div>"""
             
             if "msfmodule" in report:
-                html += """<div class="row"> <h2>Metasploit Module</h2> <table id="msfmodule" class="display"> <thead> <tr> <th>#</th> <th>Titke</th> <th>Module</th> <th>Link</th> </tr> </thead> <tbody>"""
+                html += """<div class="row"> <h2>Metasploit Module</h2> <table id="msfmodule" class="display"> <thead> <tr> <th>#</th> <th>Title</th> <th>Module</th> <th>Link</th> </tr> </thead> <tbody>"""
                 num = 1
                 for msf in report['msfmodule']:
                     html += f"<tr> <td>{num}</td> <td>{msf['title']}</td> <td>{msf['module']}</td> <td> <a target='_blank' href='{msf['link']}' class='visit'>Visit</a> </td> </tr>"
                     num += 1
                 html += """</tbody></table></div>"""
 
+            if "nsescriptdb" in report:
+                html += """<div class="row"> <h2>NSE Script</h2> <table id="nsescript" class="display"> <thead> <tr> <th>#</th> <th>Title</th> <th>Script type</th> <th>Description</th> <th>Link</th> </tr> </thead> <tbody>"""
+                num = 1
+                for nse in report['nsescriptdb']:
+                    html += f"<tr> <td>{num}</td> <td>{nse['title']}</td> <td>{nse['type']}</td> <td>{nse['description']}</td> <td> <a target='_blank' href='{nse['link']}' class='visit'>Visit</a> </td> </tr>"
+                    num += 1
+                html += """</tbody></table></div>"""
 
         html += """<footer><h4>Thank You for using SiCat!</h4><ul style="list-style: none;"><li style="margin-top:10px;">Give us star: <a href="">https://github.com/justakazh/sicat</a></li></ul></footer><script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script><script>$(document).ready( function () {$('#exploitdb').DataTable();$('#exploitalert').DataTable();$('#packetstorm').DataTable();$('#nvddb').DataTable();$('#msfmodule').DataTable();} );</script></body></html>"""
 

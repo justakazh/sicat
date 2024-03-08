@@ -4,6 +4,7 @@ from lib.vuln_packetstormsecurity import PacketStormSecurity
 from lib.module_msf import MsfModule
 from lib.cve_nvd import NvdDB
 from lib.nsescript_info_fetcher import ScriptInfoFetcher
+from lib.vuln_nsescriptdb import NSEScriptDBSearcher
 from common.out_parse import Output
 from common.nmap_parse import NmapParse
 import argparse
@@ -59,8 +60,13 @@ def main(args, keyword="", keyword_version=""):
         Output.nvddb(getnvd)
 
     if args.nsescriptdb:
-        # ToDO
-        pass
+        if keyword_version != None:
+            getnse = NSEScriptDB.find(keyword, keyword_version)
+        else:
+            getnse = NSEScriptDB.find(keyword)
+
+        Output.nsescriptdb(getnse)
+
 
     if args.output:
         if args.output_type  == "json":
@@ -81,6 +87,7 @@ if __name__ == "__main__":
     NvdDB = NvdDB()
     Output = Output()
     NmapParse = NmapParse()
+    NSEScriptDB = NSEScriptDBSearcher('files/exploit.db')
 
 
     # print banner
