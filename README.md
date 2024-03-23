@@ -60,40 +60,6 @@ pip  install  -r  requirements.txt
 | `-ot OUTPUT_TYPE` | Output file type: json or html |
 
 
--k KEYWORD, --keyword KEYWORD
-
-File name or path to save the output
-
--kv KEYWORD_VERSION, --keyword_version KEYWORD_VERSION
-
-File name or path to save the output
-
--nm NMAP, --nmap NMAP
-
-Identify via nmap output
-
---nvd Use NVD as a source of information
-
---packetstorm Use PacketStorm as a source of information
-
---exploitdb Use ExploitDB as a source of information
-
---exploitobserver Use ExploitObserver as a source of information
-
---exploitalert Use ExploitAlert as a source of information
-
---msfmodule Use metasploit module as a source of information
-
--o OUTPUT, --output OUTPUT
-
-path to save the output
-
--ot OUTPUT_TYPE, --output_type OUTPUT_TYPE
-
-output file type json and html
-
-```
-
 ### Examples
 
   
