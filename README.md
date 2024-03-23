@@ -27,6 +27,7 @@ SiCat's main strength lies in its ability to traverse both online and local reso
 ## Installation
 
 ``` bash
+git clone https://github.com/justakazh/sicat.git && cd sicat
 
 pip  install  -r  requirements.txt
 
@@ -35,40 +36,29 @@ pip  install  -r  requirements.txt
   
 
 ## Usage
-
 ```bash
 
 ~$ python sicat.py --help
 
-  
+```  
 
-_._  _,-'""`-._
+### Command Line Options:
 
-(,-.`._,'( |\`-/|
+| Command | Description |
+| --- | --- |
+| `-h` | Show help message and exit |
+| `-k KEYWORD` |  |
+| `-kv KEYWORK_VERSION` |  |
+| `-nm` | Identify via nmap output |
+| `--nvd` | Use NVD as info source |
+| `--packetstorm` | Use PacketStorm as info source |
+| `--exploitdb` | Use ExploitDB as info source |
+| `--exploitobserver` | Use ExploitObserver as info source |
+| `--exploitalert` | Use ExploitAlert as info source |
+| `--msfmoduke` | Use metasploit as info source |
+| `-o OUTPUT` | Path to save output to |
+| `-ot OUTPUT_TYPE` | Output file type: json or html |
 
-`-.-' \ )-`( , o o)
-
-`- \`_`"'-
-
-SiCat - The useful exploit finder
-
-@justakazh (https://github.com/justakazh/sicat)
-
-  
-
-usage : sicat.py --help
-
-usage: sicat.py [-h] [-k KEYWORD] [-kv KEYWORD_VERSION] [-nm NMAP] [--nvd] [--packetstorm] [--exploitdb] [--exploitalert] [--msfmodule] [-o OUTPUT] [-ot OUTPUT_TYPE]
-
-  
-
-Script to search for vulnerability and exploitation information.
-
-  
-
-options:
-
--h,  --help show this help message and exit
 
 -k KEYWORD, --keyword KEYWORD
 
@@ -104,7 +94,7 @@ output file type json and html
 
 ```
 
-### Example
+### Examples
 
   
 
