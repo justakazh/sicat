@@ -17,10 +17,12 @@ SiCat's main strength lies in its ability to traverse both online and local reso
 ### SiCat Resources
 
  - [Exploit-DB](https://www.exploit-db.com/)
+ - [Exploit Observer](https://exploit.observer)
  - [Packetstorm Security](https://packetstormsecurity.com/)
  - [Exploit Alert](https://www.exploitalert.com/)
  - [NVD Database](https://nvd.nist.gov/)
  - [Metasploit Modules](https://github.com/rapid7/metasploit-framework/tree/master/modules)
+
 
 ## Installation
 
@@ -51,6 +53,7 @@ pip  install  -r  requirements.txt
 | `--nvd` | Use NVD as info source |
 | `--packetstorm` | Use PacketStorm as info source |
 | `--exploitdb` | Use ExploitDB as info source |
+| `--exploitobserver` | Use ExploitObserver as info source |
 | `--exploitalert` | Use ExploitAlert as info source |
 | `--msfmoduke` | Use metasploit as info source |
 | `-o OUTPUT` | Path to save output to |
@@ -66,6 +69,7 @@ pip  install  -r  requirements.txt
 ```
 
 python sicat.py -k telerik --exploitdb --msfmodule
+python sicat.py -k CVE-2021-3450 --exploitobserver --output .
 
 ```
 
