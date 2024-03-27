@@ -25,6 +25,7 @@ SiCat's main strength lies in its ability to traverse both online and local reso
 ## Installation
 
 ``` bash
+git clone https://github.com/justakazh/sicat.git && cd sicat
 
 pip  install  -r  requirements.txt
 
@@ -33,74 +34,30 @@ pip  install  -r  requirements.txt
   
 
 ## Usage
-
 ```bash
 
 ~$ python sicat.py --help
 
-  
+```  
 
-_._  _,-'""`-._
+### Command Line Options:
 
-(,-.`._,'( |\`-/|
+| Command | Description |
+| --- | --- |
+| `-h` | Show help message and exit |
+| `-k KEYWORD` |  |
+| `-kv KEYWORK_VERSION` |  |
+| `-nm` | Identify via nmap output |
+| `--nvd` | Use NVD as info source |
+| `--packetstorm` | Use PacketStorm as info source |
+| `--exploitdb` | Use ExploitDB as info source |
+| `--exploitalert` | Use ExploitAlert as info source |
+| `--msfmoduke` | Use metasploit as info source |
+| `-o OUTPUT` | Path to save output to |
+| `-ot OUTPUT_TYPE` | Output file type: json or html |
 
-`-.-' \ )-`( , o o)
 
-`- \`_`"'-
-
-SiCat - The useful exploit finder
-
-@justakazh (https://github.com/justakazh/sicat)
-
-  
-
-usage : sicat.py --help
-
-usage: sicat.py [-h] [-k KEYWORD] [-kv KEYWORD_VERSION] [-nm NMAP] [--nvd] [--packetstorm] [--exploitdb] [--exploitalert] [--msfmodule] [-o OUTPUT] [-ot OUTPUT_TYPE]
-
-  
-
-Script to search for vulnerability and exploitation information.
-
-  
-
-options:
-
--h,  --help show this help message and exit
-
--k KEYWORD, --keyword KEYWORD
-
-File name or path to save the output
-
--kv KEYWORD_VERSION, --keyword_version KEYWORD_VERSION
-
-File name or path to save the output
-
--nm NMAP, --nmap NMAP
-
-Identify via nmap output
-
---nvd Use NVD as a source of information
-
---packetstorm Use PacketStorm as a source of information
-
---exploitdb Use ExploitDB as a source of information
-
---exploitalert Use ExploitAlert as a source of information
-
---msfmodule Use metasploit module as a source of information
-
--o OUTPUT, --output OUTPUT
-
-path to save the output
-
--ot OUTPUT_TYPE, --output_type OUTPUT_TYPE
-
-output file type json and html
-
-```
-
-### Example
+### Examples
 
   
 
@@ -127,6 +84,7 @@ python sicat.py -nm nmap_out.xml --packetstorm
 - [ ] Input from nmap result from pipeline
 - [ ] Nmap multiple host support
 - [ ] Search NSE Script
+- [ ] Search by PORT
 
 ## Contribution
 
