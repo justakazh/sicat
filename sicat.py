@@ -3,6 +3,8 @@ from lib.vuln_exploitalert import ExploitAlert
 from lib.vuln_packetstormsecurity import PacketStormSecurity
 from lib.module_msf import MsfModule
 from lib.cve_nvd import NvdDB
+from lib.nsescript_info_fetcher import ScriptInfoFetcher
+from lib.vuln_nsescriptdb import NSEScriptDBSearcher
 from common.out_parse import Output
 from common.nmap_parse import NmapParse
 import argparse
@@ -15,6 +17,12 @@ def main(args, keyword="", keyword_version=""):
         pass
     else:
         Output.start(keyword, keyword_version)
+
+    if args.update:
+        if args.nsescriptdb:
+            ScriptInfoFetcher().fetch_script_info()
+        else:
+            pass
 
     if args.exploitdb:
         if keyword_version != None:
@@ -51,6 +59,14 @@ def main(args, keyword="", keyword_version=""):
             getnvd = NvdDB.find(keyword)
         Output.nvddb(getnvd)
 
+    if args.nsescriptdb:
+        if keyword_version != None:
+            getnse = NSEScriptDB.find(keyword, keyword_version)
+        else:
+            getnse = NSEScriptDB.find(keyword)
+
+        Output.nsescriptdb(getnse)
+
 
     if args.output:
         if args.output_type  == "json":
@@ -71,6 +87,7 @@ if __name__ == "__main__":
     NvdDB = NvdDB()
     Output = Output()
     NmapParse = NmapParse()
+    NSEScriptDB = NSEScriptDBSearcher('files/exploit.db')
 
 
     # print banner
@@ -88,8 +105,10 @@ if __name__ == "__main__":
     parser.add_argument('--exploitdb', action='store_true', help='Use ExploitDB as a source of information')
     parser.add_argument('--exploitalert', action='store_true', help='Use ExploitAlert as a source of information')
     parser.add_argument('--msfmodule', action='store_true', help='Use metasploit module as a source of information')
+    parser.add_argument('--nsescriptdb', action='store_true', help='Use NSE Script DB as a source of information')
     parser.add_argument('-o','--output', type=str, help='path to save the output')
     parser.add_argument('-ot','--output_type', type=str, help='output file type json and html')
+    parser.add_argument('--update', action='store_true', help='execitopn upsert for local resource')
 
     args = parser.parse_args()
 
