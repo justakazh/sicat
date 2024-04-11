@@ -47,12 +47,14 @@ pip  install  -r  requirements.txt
 | `-h` | Show help message and exit |
 | `-k KEYWORD` |  |
 | `-kv KEYWORK_VERSION` |  |
+| `-update` | update explit.db |
 | `-nm` | Identify via nmap output |
 | `--nvd` | Use NVD as info source |
 | `--packetstorm` | Use PacketStorm as info source |
 | `--exploitdb` | Use ExploitDB as info source |
 | `--exploitalert` | Use ExploitAlert as info source |
 | `--msfmoduke` | Use metasploit as info source |
+| `--nsescriptdb` | Use NSEScript table in the exploit.db metasploit as info source |
 | `-o OUTPUT` | Path to save output to |
 | `-ot OUTPUT_TYPE` | Output file type: json or html |
 
@@ -69,7 +71,14 @@ python sicat.py -k telerik --exploitdb --msfmodule
 
 ```
 
-  
+*From exploit.db update*
+
+```
+
+python sicat.py --update --nsescriptdb
+
+```
+
 
 *From nmap output*
 
