@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SICAT REPORT</title>
+
+    <!-- Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    mono: ['Fira Code', 'monospace'],
+                },
+                extend: {
+                    colors: {
+                        primary: '#3b82f6', // Bright Blue
+                        secondary: '#8b5cf6', // Violet
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#1e293b', // slate-800
+                            200: '#0f172a', // slate-900 (Main BG)
+                            300: '#020617', // slate-950 (Darker)
+                            400: '#000000',
+                            500: '#0f172a', // Default text base
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        /* ProjectDiscovery-inspired Dark Theme for DataTables */
+
+        /* Main wrapper text color */
+        .dataTables_wrapper {
+            color: #cbd5e1;
+            /* slate-300 */
+            padding: 24px 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Length menu and Search inputs */
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 24px;
+        }
+
+        .dataTables_wrapper .dataTables_length select,
+        .dataTables_wrapper .dataTables_filter input {
+            background-color: #1e293b;
+            /* slate-800 */
+            border: 1px solid #475569;
+            /* slate-600 */
+            color: #f8fafc;
+            /* slate-50 */
+            border-radius: 6px;
+            padding: 8px 12px;
+            outline: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .dataTables_wrapper .dataTables_length select:focus,
+        .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: #3b82f6;
+            /* primary blue */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Ensure table takes full width and handles scrolling */
+        table.dataTable {
+            /* width: 100% !important;  <-- Removed to allow DataTables to control scrolling width */
+            border-collapse: collapse !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* Table header */
+        table.dataTable thead th,
+        table.dataTable thead td {
+            border-bottom: 2px solid #334155;
+            background-color: #1e293b;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            padding: 16px 20px !important;
+            white-space: nowrap;
+        }
+
+        /* Table body */
+        table.dataTable tbody tr {
+            background-color: #0f172a !important;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        table.dataTable tbody tr:nth-of-type(odd) {
+            background-color: #162032 !important;
+        }
+
+        table.dataTable tbody tr:hover,
+        table.dataTable tbody tr:nth-of-type(odd):hover {
+            background-color: #1e293b !important;
+        }
+
+        table.dataTable tbody td {
+            border-bottom: 1px solid #1e293b;
+            color: #cbd5e1;
+            padding: 16px 20px;
+            font-size: 0.875rem;
+            vertical-align: top;
+            line-height: 1.6;
+            white-space: nowrap;
+            /* Force horizontal scroll */
+        }
+
+
+
+        /* Pagination Buttons */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            color: #94a3b8 !important;
+            /* slate-400 */
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #1e293b !important;
+            /* slate-800 */
+            color: #f1f5f9 !important;
+            border: 1px solid #334155;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #3b82f6 !important;
+            /* primary */
+            color: white !important;
+            border: 1px solid #3b82f6;
+            font-weight: 600;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+            color: #475569 !important;
+            /* slate-600 */
+            cursor: not-allowed;
+        }
+
+        /* Info text */
+        .dataTables_wrapper .dataTables_info {
+            color: #64748b;
+            /* slate-500 */
+            font-size: 0.875rem;
+        }
+
+        /* No data */
+        .dataTables_empty {
+            color: #64748b;
+            padding: 48px;
+            text-align: center;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-dark-200 text-slate-300 font-sans antialiased p-0 md:p-8 min-h-screen selection:bg-primary/30 selection:text-white">
+
+    <!-- Top-level gradient line -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary z-50"></div>
+
+    <div
+        class="max-w-[1600px] mx-auto bg-dark-100/80 backdrop-blur-xl p-6 md:p-10 rounded-2xl shadow-2xl border border-white/5 relative overflow-hidden mt-4">
+
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row items-center justify-between mb-12 border-b border-white/5 pb-8">
+            <div class="flex items-center gap-4 mb-4 md:mb-0">
+                <div>
+                    <h1 class="text-3xl font-bold text-white tracking-tight">SICAT <span
+                            class="text-slate-500 font-normal">REPORT</span></h1>
+                    <p class="text-slate-400 text-sm">The Useful Vulnerability & Exploit Finder</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right hidden md:block">
+                    <p class="text-xs text-slate-500 uppercase tracking-widest font-semibold mb-1">Generated On</p>
+                    <p class="font-mono text-slate-300">{{ timestamp }}</p>
+                </div>
+                <div class="bg-dark-200 px-4 py-2 rounded-lg border border-white/5 flex items-center gap-3">
+                    <span class="flex h-3 w-3 relative">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                    </span>
+                    <span class="font-bold text-white">{{ total_results }}</span>
+                    <span class="text-slate-500 text-sm">Findings</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Meta Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
+            <!-- Keywords Card -->
+            <div
+                class="lg:col-span-3 bg-dark-200 p-6 rounded-xl border border-white/5 hover:border-primary/30 transition-colors">
+                <h4 class="text-slate-500 text-xs uppercase tracking-wider font-bold mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass text-primary"></i> Target Keywords
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    {{ keywords_html }}
+                </div>
+            </div>
+
+            <!-- Summary Card -->
+            <div
+                class="bg-gradient-to-br from-primary/20 to-secondary/20 p-6 rounded-xl border border-white/10 relative overflow-hidden flex flex-col justify-center">
+                <div class="absolute top-0 right-0 p-4 opacity-20">
+                    <i class="fa-solid fa-chart-pie text-6xl text-white"></i>
+                </div>
+                <h3 class="text-white text-sm font-bold uppercase mb-2 relative z-10">Total Findings</h3>
+                <div class="text-5xl font-black text-white relative z-10 tracking-tight">{{ total_results }}</div>
+            </div>
+        </div>
+
+        <!-- Source Distribution -->
+        <div class="mb-10">
+            <h3 class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-6 px-1">Findings by Source</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {{ source_counts_html }}
+            </div>
+        </div>
+
+        <!-- Results Tables -->
+        <div class="space-y-12">
+            {{ tables_html }}
+        </div>
+
+    </div>
+
+    <!-- Init DataTables -->
+    <script>
+        $(document).ready(function () {
+            $('.sicat-table').DataTable({
+                responsive: false, // Turn off responsive to force scroll
+                scrollX: true, // Enable horizontal scroll
+                autoWidth: false, // Disable auto width calculation to work better with scrollX
+                pageLength: 10,
+                lengthMenu: [5, 10, 25, 50, 100],
+                order: [], // Disable initial sort
+                language: {
+                    searchPlaceholder: "Search...",
+                    search: "Filter:",
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

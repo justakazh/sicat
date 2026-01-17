@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SICAT - Web Scanner</title>
+
+    <!-- Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons: Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- TailwindCSS (CDN for simplicity in report) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            100: '#1e293b', // Slate 800
+                            200: '#0f172a', // Slate 900
+                            300: '#020617', // Slate 950
+                            400: '#334155', // Slate 700
+                            500: '#475569', // Slate 600
+                            600: '#1c1c1c', // Custom darker
+                        },
+                        primary: '#3b82f6', // Blue 500
+                        secondary: '#8b5cf6', // Violet 500
+                        accent: '#06b6d4', // Cyan 500
+                        success: '#10b981', // Emerald 500
+                        warning: '#f59e0b', // Amber 500
+                        danger: '#ef4444', // Red 500
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'progress': 'progress 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        progress: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '50%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-dark-200 text-slate-300 font-sans antialiased p-0 md:p-8 min-h-screen selection:bg-primary/30 selection:text-white flex flex-col items-center justify-center relative">
+
+
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px]"></div>
+    </div>
+
+
+    <!-- Main Container (No Card) -->
+    <div class="w-full max-w-3xl z-10 px-4">
+
+        <!-- Header (ASCII Art) -->
+        <div class="text-center mb-10 flex flex-col items-center">
+            <pre
+                class="text-xs md:text-base text-primary font-mono whitespace-pre select-none animate-pulse-slow leading-tight">
+
+        _..---...,""-._     ,/}/)
+     .''        ,      ``..'(/-<
+    /   _      {      )         \
+   ;   _ `.     `.   <         a(
+ ,'   ( \  )      `.  \ __.._ .: y
+(  <\_-) )'-.____...\  `._   //-'
+ `. `-' /-._)))      `-._)))
+   `...'      
+   SICAT - The Useful Vulnerability & Exploit Finder
+
+            </pre>
+        </div>
+
+        <!-- Search Form -->
+        <form action="/scan" method="POST" class="space-y-8" onsubmit="showLoading()">
+
+            <!-- Input Group Card -->
+            <div class="bg-dark-100/50 p-6 rounded-2xl border border-white/5 shadow-lg backdrop-blur-sm">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="md:col-span-3 space-y-2">
+                        <label for="keyword"
+                            class="text-sm font-semibold text-slate-400 uppercase tracking-wider ml-1">Keyword</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i
+                                    class="fa-solid fa-magnifying-glass text-slate-500 group-focus-within:text-primary transition-colors text-sm"></i>
+                            </div>
+                            <input type="text" id="keyword" name="keyword" required
+                                placeholder="Search for vulnerability..."
+                                class="block w-full pl-10 pr-4 py-2.5 bg-dark-300 border border-dark-400 rounded-xl text-white placeholder-slate-600 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all outline-none shadow-inner text-sm">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="limit"
+                            class="text-sm font-semibold text-slate-400 uppercase tracking-wider ml-1">Limit</label>
+                        <div class="relative group">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i
+                                    class="fa-solid fa-list-ol text-slate-500 group-focus-within:text-primary transition-colors text-sm"></i>
+                            </div>
+                            <input type="number" id="limit" name="limit" value="25" min="1" max="500"
+                                class="block w-full pl-10 pr-4 py-2.5 bg-dark-300 border border-dark-400 rounded-xl text-white placeholder-slate-600 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all outline-none shadow-inner text-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modules Selection Card -->
+            <div class="bg-dark-100/50 p-6 rounded-2xl border border-white/5 shadow-lg backdrop-blur-sm">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label
+                            class="text-sm font-semibold text-slate-400 uppercase tracking-wider ml-1">Sources</label>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <!-- ExploitDB -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="exploit_db" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                Exploit-DB
+                            </div>
+                        </label>
+
+                        <!-- NVD NIST -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="nvd_nist" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                NVD NIST
+                            </div>
+                        </label>
+
+                        <!-- CVE.org -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="cve_org" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                CVE.org
+                            </div>
+                        </label>
+
+                        <!-- Github -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="github" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                Github
+                            </div>
+                        </label>
+
+                        <!-- Nuclei Templates -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="nuclei_templates" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                Nuclei Templates
+                            </div>
+                        </label>
+
+                        <!-- Wordfence CVE -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="wordfence_cve" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                Wordfence CVE
+                            </div>
+                        </label>
+
+                        <!-- Metasploit -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="metasploit_framework" checked
+                                class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                Metasploit
+                            </div>
+                        </label>
+
+                        <!-- NSE Script -->
+                        <label class="cursor-pointer group">
+                            <input type="checkbox" name="modules" value="nse_script" checked class="peer sr-only">
+                            <div
+                                class="px-4 py-1.5 rounded-full bg-dark-300 border border-dark-400 text-slate-400 text-sm font-medium transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary peer-checked:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-dark-400 hover:border-slate-500">
+                                NSE Scripts
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full py-3 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary text-white font-bold rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transform hover:-translate-y-0.5 transition-all text-base flex items-center justify-center gap-3 group">
+                <i class="fa-solid fa-radar group-hover:rotate-12 transition-transform"></i>
+                Start Search
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-8 text-slate-500 text-sm">
+        &copy; 2024 SICAT. Crafted by <a href="https://github.com/justakazh"
+            class="text-secondary hover:text-white transition-colors">@justakazh</a>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading"
+        class="fixed inset-0 bg-dark-300 z-[9999] hidden flex items-center justify-center transition-opacity duration-500 opacity-0">
+        <!-- content wrapper to push down -->
+        <div class="flex flex-col items-center transform translate-y-15">
+            <!-- ASCII Cat Animation -->
+            <pre class="text-xs md:text-sm text-primary font-mono whitespace-pre mb-8 animate-pulse text-left">
+  ,-.       _,---._ __  / \
+ /  )    .-'       `./ /   \
+(  (   ,'            `/    /|
+ \  `-"             \'\   / |
+  `.              ,  \ \ /  |
+   /`.          ,'-`----Y   |
+  (            ;        |   '
+  |  ,-.    ,-'         |  /
+  |  | (   |            | /
+  )  |  \  `.___________|/
+  `--'   `--'
+
+            </pre>
+
+            <h2 class="text-3xl font-bold text-white mb-4 tracking-tight text-center">Scanning In Progress</h2>
+
+            <!-- Dynamic Status Text -->
+            <div class="h-6 overflow-hidden w-full flex justify-center">
+                <p id="loading-text" class="text-primary font-mono text-lg animate-pulse text-center">Initializing
+                    scanners...</p>
+            </div>
+
+            <div class="mt-8 w-64 h-1 bg-dark-100 rounded-full overflow-hidden mx-auto">
+                <div class="h-full w-full bg-primary animate-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const statusMessages = [
+            "Querying Exploit-DB...",
+            "Checking NVD NIST Database...",
+            "Searching CVE.org...",
+            "Scanning GitHub Repositories...",
+            "Parsing Nuclei Templates...",
+            "Fetching Metasploit Modules...",
+            "Analyzing NSE Scripts...",
+            "Aggregating Results..."
+        ];
+
+        function rotateText() {
+            const textElement = document.getElementById('loading-text');
+            let index = 0;
+            setInterval(() => {
+                textElement.innerText = statusMessages[index];
+                index = (index + 1) % statusMessages.length;
+            }, 800);
+        }
+
+        function showLoading() {
+            const loader = document.getElementById('loading');
+            loader.classList.remove('hidden');
+            // Small delay to allow display change before opacity transition
+            setTimeout(() => {
+                loader.classList.remove('opacity-0');
+            }, 10);
+            rotateText();
+        }
+    </script>
+</body>
+
+</html>
