@@ -88,6 +88,20 @@ Double-click `install.bat` or run it from the command prompt. This will:
 3. Install Python dependencies.
 4. Verify the `sicat` command is available in your PATH.
 
+### Docker
+
+You can also run SICAT in a container to avoid dependency issues.
+
+1. **Build the image**:
+   ```bash
+   docker build -t sicat .
+   ```
+
+2. **Run the container**:
+   ```bash
+   docker run --rm -it sicat -k "wordpress"
+   ```
+
 ### Manual Installation (Advanced)
 
 ```bash

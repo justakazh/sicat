@@ -22,7 +22,8 @@ class ReportGenerator:
             grouped_results[s].append(r)
         
         # Prepare content parts
-        keywords_html = "".join([f'<span class="bg-dark-200 border border-primary text-primary px-3 py-1 rounded-full text-xs font-mono mr-2 mb-2 inline-flex items-center whitespace-nowrap"><i class="fa-solid fa-fingerprint mr-2"></i>{html.escape(k.replace("\n", " "))}</span>' for k in self.keywords])
+        # Prepare content parts
+        keywords_html = "".join([f'<span class="bg-dark-200 border border-primary text-primary px-3 py-1 rounded-full text-xs font-mono mr-2 mb-2 inline-flex items-center whitespace-nowrap"><i class="fa-solid fa-fingerprint mr-2"></i>{html.escape(k.replace(chr(10), " "))}</span>' for k in self.keywords])
         
         source_counts_html = ''.join(f'''
             <div class="bg-dark-100 p-5 rounded-xl border border-gray-700/50 hover:border-secondary/50 shadow-lg transform transition hover:-translate-y-1 relative overflow-hidden group">
