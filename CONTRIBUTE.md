@@ -187,6 +187,21 @@ Find the "Modules Selection Card" section and add a new checkbox chip using the 
 </label>
 ```
 
+**Step 4c: Update Loading Messages (`lib/templates/index.html`)**
+
+To give the user visual feedback that your source is being scanned, add a message to the `statusMessages` array in the JavaScript section at the bottom of `index.html`.
+
+```javascript
+const statusMessages = [
+    "Initializing Scanner...",
+    "Crawling Exploit-DB...",
+    // ...
+    "Searching My New Source...", // <--- Add this line
+    // ...
+    "Finalizing Report..."
+];
+```
+
 **Step 4b: Update Backend (`lib/web_server.py`)**
 
 The web server processes the form data and runs the selected scanners. You must add the logic to handle your new module key (`value="my_new_source"`).
@@ -228,6 +243,7 @@ SICAT's `ReportGenerator` is dynamic. As long as your source's `Output` method p
 - [ ] Added argument in `sicat.py`
 - [ ] Added execution logic in `sicat.py`
 - [ ] Added checkbox in `lib/templates/index.html`
+- [ ] Updated `statusMessages` in `lib/templates/index.html`
 - [ ] Added handler logic in `lib/web_server.py`
 - [ ] Tested CLI: `python sicat.py -k "test" -mns`
 - [ ] Tested Web: `python sicat.py --web-interface` -> select "My New Source"

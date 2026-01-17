@@ -293,6 +293,17 @@
                     search: "Filter:",
                 }
             });
+
+            // If running on local server (port 5000), show Back button
+            if (window.location.port === '5000') {
+                const backBtn = `
+                    <a href="/" class="fixed bottom-8 right-8 bg-primary hover:bg-blue-600 text-white font-bold p-4 rounded-full shadow-lg transition-all hover:scale-110 z-50 flex items-center justify-center gap-2 group">
+                        <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                        <span>Back</span>
+                    </a>
+                `;
+                $('body').append(backBtn);
+            }
         });
     </script>
 </body>
