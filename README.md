@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-    <h2> The Useful Vulnerability and Exploit Finder </h2>
+    <h1> SICAT - The useful vulnerability and exploit finder </h1>
     <p>
         <a href="https://github.com/justakazh/sicat/stargazers">
             <img src="https://img.shields.io/github/stars/justakazh/sicat?style=for-the-badge&color=blue" alt="Stars" />
@@ -214,5 +214,6 @@ This project is licensed under the MIT License.
 <div align="center">
     Made with love by @justakazh
 </div>
+
 
 
