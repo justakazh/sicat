@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-    <h2> Advanced Vulnerability & Exploit Scanner </h2>
+    <h2> Advanced Vulnerability & Exploit Finder </h2>
     <p>
         <a href="https://github.com/justakazh/sicat/stargazers">
             <img src="https://img.shields.io/github/stars/justakazh/sicat?style=for-the-badge&color=blue" alt="Stars" />
@@ -216,3 +216,4 @@ This project is licensed under the MIT License.
 <div align="center">
     Made with love by @justakazh
 </div>
+
