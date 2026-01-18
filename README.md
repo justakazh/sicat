@@ -1,11 +1,9 @@
-# SICAT - The Useful Vulnerability & Exploit Finder
-
 <div align="center">
-    <img src="https://socialify.git.ci/justakazh/sicat/image?description=1&font=Inter&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Dark" alt="SICAT" width="640" height="320" />
+    <img src="https://raw.githubusercontent.com/justakazh/sicat/refs/heads/main/Preview.png" alt="SICAT"  />
 </div>
 
 <div align="center">
-    <h2> Advanced Vulnerability & Exploit Finder </h2>
+    <h2> The Useful Vulnerability and Exploit Finder </h2>
     <p>
         <a href="https://github.com/justakazh/sicat/stargazers">
             <img src="https://img.shields.io/github/stars/justakazh/sicat?style=for-the-badge&color=blue" alt="Stars" />
@@ -216,4 +214,5 @@ This project is licensed under the MIT License.
 <div align="center">
     Made with love by @justakazh
 </div>
+
 
