@@ -125,8 +125,6 @@ Some modules (like GitHub, Nuclei Templates, Wordfence CVE) require a GitHub Per
 }
 ```
 
-> **Why?** Without a token, GitHub allows only 60 requests/hour. With a token, you get 5,000/hour, ensuring deep searches without interruption.
-
 ---
 
 ## Usage
@@ -214,6 +212,7 @@ This project is licensed under the MIT License.
 <div align="center">
     Made with love by @justakazh
 </div>
+
 
 
 
