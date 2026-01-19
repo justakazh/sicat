@@ -21,7 +21,7 @@ def main():
         print(f"{ConsoleColors.FAIL}[-] Config file not found.{ConsoleColors.ENDC}")
         print(f"{ConsoleColors.GREEN}[*] Creating config file.{ConsoleColors.ENDC}")
         os.makedirs(os.path.dirname(config_path), exist_ok=True)
-        open(config_path, "w").write("{}")
+        open(config_path, "w").write("{\"gh_token\": \"YOUR_GITHUB_ACCESS_TOKEN\"}")
 
     parser = argparse.ArgumentParser(description="SiCat - Vulnerability & Exploit Finder")
     
@@ -271,3 +271,4 @@ SICAT - The Useful {ConsoleColors.RED}Vulnerability{ConsoleColors.ENDC} & {Conso
 
 if __name__ == "__main__":
     main()
+
